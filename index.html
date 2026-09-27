@@ -61,37 +61,35 @@
 </head>
 <body class="bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen flex flex-col antialiased selection:bg-pink-500 selection:text-white">
 
-    <!-- Strict Authentication Modal -->
     <div id="auth-container" class="fixed inset-0 z-50 bg-black flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-8 w-full max-w-md shadow-2xl">
+        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-8 w-full max-w-md shadow-2xl">
             <div class="text-center mb-6">
                 <h1 class="text-4xl font-bold tracking-tight bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent inline-block font-serif italic">godx</h1>
-                <p class="text-sm text-gray-500 dark:text-zinc-400 mt-2">Cloud-powered Instagram clone with real-time sync.</p>
+                <p class="text-sm text-gray-500 dark:text-zinc-400 mt-2">Fully self-contained client experience with local storage sync.</p>
             </div>
             <form id="auth-form" class="space-y-4" onsubmit="window.handleAuth(event)">
                 <div id="name-field-wrapper" class="hidden">
-                    <input type="text" id="auth-fullname" placeholder="Full Name" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:border-instagram-blue">
+                    <input type="text" id="auth-fullname" placeholder="Full Name" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue">
                 </div>
                 <div>
-                    <input type="text" id="auth-username" required placeholder="Username or email" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:border-instagram-blue">
+                    <input type="text" id="auth-username" required placeholder="Username or email" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue">
                 </div>
                 <div>
-                    <input type="password" id="auth-password" required placeholder="Password" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:border-instagram-blue">
+                    <input type="password" id="auth-password" required placeholder="Password" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue">
                 </div>
-                <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition shadow-md">Log in</button>
+                <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-xl text-sm transition shadow-md">Log in</button>
             </form>
             <div class="mt-6 text-center text-sm text-gray-600 dark:text-zinc-400">
                 <span id="auth-switch-text">Don't have an account?</span>
                 <button type="button" onclick="window.toggleAuthMode()" class="text-instagram-blue font-semibold ml-1 hover:underline focus:outline-none" id="auth-switch-btn">Sign up</button>
             </div>
             <div class="mt-4 text-center">
-                <button type="button" onclick="window.loginAsGuest()" class="text-xs text-gray-500 dark:text-zinc-500 hover:underline">Continue with Cloud Guest Session</button>
+                <button type="button" onclick="window.loginAsGuest()" class="text-xs text-gray-500 dark:text-zinc-500 hover:underline">Continue with Guest Session</button>
             </div>
         </div>
     </div>
 
     <div id="main-app" class="flex-1 flex flex-col md:flex-row min-h-screen hidden">
-        
         <!-- Desktop Sidebar Navigation -->
         <header class="hidden md:flex flex-col w-64 border-r border-gray-200 dark:border-zinc-800 p-6 fixed h-screen bg-white dark:bg-black z-30 justify-between">
             <div class="space-y-8">
@@ -115,14 +113,6 @@
                         <i class="fa-solid fa-clapperboard text-xl w-6 text-center group-hover:scale-110 transition"></i>
                         <span>Reels</span>
                     </button>
-                    <button onclick="window.switchTab('messages')" id="nav-messages" class="flex items-center gap-4 w-full p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition font-medium text-gray-700 dark:text-zinc-300 group relative">
-                        <i class="fa-regular fa-paper-plane text-xl w-6 text-center group-hover:scale-110 transition"></i>
-                        <span>Messages</span>
-                    </button>
-                    <button onclick="window.openNotificationModal()" class="flex items-center gap-4 w-full p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition font-medium text-gray-700 dark:text-zinc-300 group">
-                        <i class="fa-regular fa-heart text-xl w-6 text-center group-hover:scale-110 transition"></i>
-                        <span>Notifications</span>
-                    </button>
                     <button onclick="window.openCreatePostModal()" class="flex items-center gap-4 w-full p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition font-medium text-gray-700 dark:text-zinc-300 group">
                         <i class="fa-regular fa-square-plus text-xl w-6 text-center group-hover:scale-110 transition"></i>
                         <span>Create</span>
@@ -141,10 +131,6 @@
                     <i id="theme-icon" class="fa-solid fa-moon text-xl w-6 text-center"></i>
                     <span id="theme-text">Dark mode</span>
                 </button>
-                <button onclick="window.openSettingsModal()" class="flex items-center gap-4 w-full p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition font-medium text-gray-700 dark:text-zinc-300">
-                    <i class="fa-solid fa-gear text-xl w-6 text-center"></i>
-                    <span>Settings</span>
-                </button>
                 <button onclick="window.logout()" class="flex items-center gap-4 w-full p-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/30 transition font-medium text-red-600">
                     <i class="fa-solid fa-right-from-bracket text-xl w-6 text-center"></i>
                     <span>Log out</span>
@@ -156,8 +142,7 @@
         <header class="md:hidden flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-zinc-800 sticky top-0 bg-white/80 dark:bg-black/80 backdrop-blur-md z-30">
             <h1 class="text-2xl font-bold font-serif italic bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">godx</h1>
             <div class="flex items-center gap-5 text-xl">
-                <button onclick="window.openNotificationModal()"><i class="fa-regular fa-heart"></i></button>
-                <button onclick="window.switchTab('messages')"><i class="fa-regular fa-paper-plane"></i></button>
+                <button onclick="window.openCreatePostModal()"><i class="fa-regular fa-square-plus"></i></button>
             </div>
         </header>
 
@@ -170,11 +155,10 @@
         </nav>
 
         <main class="flex-1 md:ml-64 pb-20 md:pb-0 flex justify-center">
-            
             <!-- Tab 1: Home Feed -->
             <div id="tab-home" class="w-full max-w-2xl px-0 sm:px-4 py-4 space-y-6">
                 <!-- Stories Bar -->
-                <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 sm:rounded-xl p-4 flex gap-4 overflow-x-auto hide-scrollbar">
+                <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 sm:rounded-2xl p-4 flex gap-4 overflow-x-auto hide-scrollbar">
                     <div class="flex flex-col items-center flex-shrink-0 cursor-pointer group relative" onclick="document.getElementById('story-file-input').click()">
                         <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 relative">
                             <img id="story-my-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" class="w-full h-full object-cover rounded-full border-2 border-white dark:border-black" alt="Your Story">
@@ -183,15 +167,11 @@
                         <span class="text-xs mt-1 text-gray-600 dark:text-zinc-400 truncate w-16 text-center">Your story</span>
                         <input type="file" id="story-file-input" accept="image/*,video/*" class="hidden" onchange="window.handleStoryUpload(event)">
                     </div>
-                    <div id="stories-container" class="flex gap-4">
-                        <!-- Dynamic stories injected here -->
-                    </div>
+                    <div id="stories-container" class="flex gap-4"></div>
                 </div>
 
                 <!-- Posts Feed Container -->
-                <div id="feed-container" class="space-y-6">
-                    <!-- Dynamic posts injected here -->
-                </div>
+                <div id="feed-container" class="space-y-6"></div>
             </div>
 
             <!-- Tab 2: Search View -->
@@ -200,79 +180,40 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
                     <input type="text" id="search-input" oninput="window.handleSearchInput(this.value)" placeholder="Search users, captions..." class="w-full pl-11 pr-4 py-3 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:border-instagram-blue text-sm">
                 </div>
-                <div id="search-results" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <!-- Search results injected here -->
-                </div>
+                <div id="search-results" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
             </div>
 
             <!-- Tab 3: Explore Grid View -->
             <div id="tab-explore" class="w-full max-w-4xl px-0 sm:px-4 py-4 hidden space-y-4">
-                <div class="grid grid-cols-3 gap-1 sm:gap-4" id="explore-grid">
-                    <!-- Dynamic Explore Grid -->
-                </div>
+                <div class="grid grid-cols-3 gap-1 sm:gap-4" id="explore-grid"></div>
             </div>
 
             <!-- Tab 4: Reels View -->
             <div id="tab-reels" class="w-full max-w-md py-0 sm:py-6 hidden flex flex-col items-center">
-                <div id="reels-container" class="w-full h-[calc(100vh-60px)] md:h-[80vh] bg-black sm:rounded-2xl overflow-y-scroll snap-y snap-mandatory hide-scrollbar relative">
-                    <!-- Reels items injected here -->
-                </div>
+                <div id="reels-container" class="w-full h-[calc(100vh-60px)] md:h-[80vh] bg-black sm:rounded-2xl overflow-y-scroll snap-y snap-mandatory hide-scrollbar relative"></div>
             </div>
 
-            <!-- Tab 5: Messages (Direct) -->
-            <div id="tab-messages" class="w-full max-w-5xl h-[calc(100vh-60px)] md:h-screen hidden flex border-x border-gray-200 dark:border-zinc-800 bg-white dark:bg-black">
-                <div class="w-full md:w-80 border-r border-gray-200 dark:border-zinc-800 flex flex-col">
-                    <div class="p-4 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center">
-                        <span class="font-bold text-lg">Chats</span>
-                    </div>
-                    <div id="chat-list" class="flex-1 overflow-y-auto divide-y divide-gray-100 dark:divide-zinc-900">
-                        <!-- Chat contacts injected here -->
-                    </div>
-                </div>
-                <div id="chat-window" class="hidden md:flex flex-1 flex-col bg-gray-50 dark:bg-zinc-950">
-                    <div id="chat-header" class="p-4 border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-black flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-200">
-                            <img id="active-chat-avatar" src="" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 id="active-chat-name" class="font-semibold text-sm">Select a chat</h4>
-                            <p id="active-chat-status" class="text-xs text-gray-500 dark:text-zinc-400">Cloud Real-time</p>
-                        </div>
-                    </div>
-                    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 flex flex-col">
-                        <div class="m-auto text-center text-gray-400">
-                            <i class="fa-regular fa-paper-plane text-4xl mb-2"></i>
-                            <p>Select a user to chat</p>
-                        </div>
-                    </div>
-                    <div id="chat-input-bar" class="p-3 bg-white dark:bg-black border-t border-gray-200 dark:border-zinc-800 hidden items-center gap-3">
-                        <input type="text" id="chat-message-input" onkeypress="window.handleChatKeyPress(event)" placeholder="Message..." class="flex-1 bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-full px-4 py-2 text-sm focus:outline-none">
-                        <button onclick="window.sendChatMessage()" class="text-instagram-blue font-semibold text-sm px-4 py-2 hover:opacity-80">Send</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab 6: Profile View -->
+            <!-- Tab 5: Profile View -->
             <div id="tab-profile" class="w-full max-w-4xl px-4 py-6 hidden space-y-6">
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-gray-200 dark:border-zinc-800">
                     <div class="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-gray-300 dark:border-zinc-700 flex-shrink-0 relative group cursor-pointer" onclick="document.getElementById('profile-avatar-input').click()">
                         <img id="profile-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" class="w-full h-full object-cover" alt="Profile avatar">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-xs font-semibold">Change</div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white text-xs font-semibold">Change photo</div>
                         <input type="file" id="profile-avatar-input" accept="image/*" class="hidden" onchange="window.handleProfileAvatarUpload(event)">
                     </div>
                     <div class="flex-1 space-y-4 text-center sm:text-left">
                         <div class="flex flex-col sm:flex-row items-center gap-4">
                             <h2 id="profile-username" class="text-xl font-semibold">username</h2>
-                            <button onclick="window.openEditProfileModal()" class="px-4 py-1.5 bg-gray-200 dark:bg-zinc-800 hover:bg-gray-300 dark:hover:bg-zinc-700 font-semibold text-sm rounded-lg transition">Edit profile</button>
+                            <button onclick="window.openEditProfileModal()" class="px-4 py-1.5 bg-gray-200 dark:bg-zinc-800 hover:bg-gray-300 dark:hover:bg-zinc-700 font-semibold text-sm rounded-xl transition">Edit profile</button>
                         </div>
                         <div class="flex justify-center sm:justify-start gap-6 text-sm">
                             <div><strong id="profile-posts-count">0</strong> posts</div>
-                            <div><strong id="profile-followers-count">142</strong> followers</div>
-                            <div><strong id="profile-following-count">180</strong> following</div>
+                            <div><strong id="profile-followers-count">1,420</strong> followers</div>
+                            <div><strong id="profile-following-count">480</strong> following</div>
                         </div>
                         <div>
                             <h3 id="profile-fullname" class="font-bold text-sm">Full Name</h3>
-                            <p id="profile-bio" class="text-sm text-gray-600 dark:text-zinc-400 mt-1 whitespace-pre-line">Digital creator exploring cloud architecture on godx ✨</p>
+                            <p id="profile-bio" class="text-sm text-gray-600 dark:text-zinc-400 mt-1 whitespace-pre-line">Digital creator exploring clean design ✨</p>
                         </div>
                     </div>
                 </div>
@@ -283,15 +224,11 @@
                     <button onclick="window.switchProfileTab('saved')" id="btn-prof-saved" class="flex items-center gap-2 py-3 px-6 border-t-2 border-transparent hover:text-black dark:hover:text-white transition"><i class="fa-regular fa-bookmark"></i> Saved</button>
                 </div>
 
-                <div id="profile-posts-grid" class="grid grid-cols-3 gap-1 sm:gap-4">
-                    <!-- Profile posts injected here -->
-                </div>
+                <div id="profile-posts-grid" class="grid grid-cols-3 gap-1 sm:gap-4"></div>
             </div>
-
         </main>
     </div>
 
-    <!-- Create Post Modal -->
     <div id="create-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
         <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl">
             <div class="px-4 py-3 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center font-semibold">
@@ -304,18 +241,18 @@
                     <p class="text-sm font-medium" id="post-file-label">Upload image or video from device gallery</p>
                     <input type="file" id="post-media-file" accept="image/*,video/*" class="hidden" onchange="window.previewPostFile(event)">
                 </div>
-                <div id="post-preview-container" class="hidden max-h-48 overflow-hidden rounded-lg">
+                <div id="post-preview-container" class="hidden max-h-48 overflow-hidden rounded-xl">
                     <img id="post-img-preview" class="w-full h-full object-cover">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Caption</label>
-                    <textarea id="create-post-caption" rows="3" placeholder="Write a caption..." class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:border-instagram-blue"></textarea>
+                    <textarea id="create-post-caption" rows="3" placeholder="Write a caption..." class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue"></textarea>
                 </div>
                 <div class="flex items-center gap-3">
                     <input type="checkbox" id="create-is-reel" class="w-4 h-4 text-instagram-blue rounded">
                     <label for="create-is-reel" class="text-sm font-medium">Post as Reel</label>
                 </div>
-                <button onclick="window.submitNewPost()" class="w-full py-2.5 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition shadow">Share to Cloud</button>
+                <button onclick="window.submitNewPost()" class="w-full py-2.5 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-xl text-sm transition shadow">Share</button>
             </div>
         </div>
     </div>
@@ -329,113 +266,99 @@
             </div>
             <div class="p-6 space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Full Name</label>
-                    <input type="text" id="edit-fullname-input" class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm">
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Full Name</label>
+                    <input type="text" id="edit-fullname-input" class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Bio</label>
-                    <textarea id="edit-bio-input" rows="3" class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm"></textarea>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Bio</label>
+                    <textarea id="edit-bio-input" rows="3" class="w-full px-3 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-instagram-blue"></textarea>
                 </div>
-                <button onclick="window.saveProfileChanges()" class="w-full py-2.5 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition">Save Changes</button>
+                <button onclick="window.saveProfileEdits()" class="w-full py-2.5 bg-instagram-blue hover:bg-blue-600 text-white font-semibold rounded-xl text-sm transition shadow">Save Changes</button>
             </div>
         </div>
     </div>
 
-    <!-- Story Viewer Modal -->
-    <div id="story-viewer-modal" class="fixed inset-0 z-50 bg-black flex items-center justify-center hidden">
-        <div class="relative w-full max-w-md h-full sm:h-[85vh] sm:rounded-2xl bg-zinc-950 overflow-hidden flex flex-col justify-between p-4">
-            <div class="flex gap-1.5 w-full pt-2">
-                <div class="flex-1 bg-white/30 h-1 rounded-full overflow-hidden">
-                    <div id="story-progress-fill" class="bg-white h-full w-0 transition-all duration-100"></div>
-                </div>
-            </div>
-            <div class="flex items-center justify-between pt-2">
-                <div class="flex items-center gap-3">
-                    <img id="story-viewer-avatar" src="" class="w-9 h-9 rounded-full object-cover">
-                    <span id="story-viewer-username" class="text-white font-semibold text-sm">username</span>
-                </div>
-                <button onclick="window.closeStoryViewer()" class="text-white text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="flex-1 flex items-center justify-center my-4 overflow-hidden rounded-xl bg-black">
-                <img id="story-viewer-media" src="" class="max-h-full max-w-full object-contain">
-            </div>
-            <div class="flex items-center gap-3 pb-4">
-                <input type="text" placeholder="Reply to story..." class="flex-1 bg-zinc-900 border border-zinc-800 text-white px-4 py-2.5 rounded-full text-sm focus:outline-none">
-            </div>
-        </div>
-    </div>
-
-    <!-- Comments Modal -->
-    <div id="comments-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col h-[500px]">
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center font-semibold">
-                <span>Comments</span>
-                <button onclick="window.closeCommentsModal()" class="text-lg hover:text-instagram-pink"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="comments-list-container" class="flex-1 overflow-y-auto p-4 space-y-3">
-                <!-- Comments list injected here -->
-            </div>
-            <div class="p-3 border-t border-gray-200 dark:border-zinc-800 flex gap-2">
-                <input type="text" id="comment-input" placeholder="Add a comment..." class="flex-1 px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-sm focus:outline-none">
-                <button onclick="window.submitComment()" class="text-instagram-blue font-semibold text-sm px-4">Post</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Modal -->
-    <div id="notification-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center font-semibold">
-                <span>Notifications</span>
-                <button onclick="window.closeNotificationModal()" class="text-lg hover:text-instagram-pink"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="notifications-list" class="max-h-96 overflow-y-auto divide-y divide-gray-100 dark:divide-zinc-800 p-4 text-sm text-gray-500 text-center">
-                All caught up on cloud notifications.
-            </div>
-        </div>
-    </div>
-
-    <!-- Settings Modal -->
-    <div id="settings-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center font-semibold">
-                <span>Settings</span>
-                <button onclick="window.closeSettingsModal()" class="text-lg hover:text-instagram-pink"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="p-4 space-y-4">
-                <div class="flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-xl cursor-pointer">
-                    <span class="font-medium text-sm">Dark Theme</span>
-                    <input type="checkbox" id="settings-dark-toggle" onchange="window.toggleDarkMode()" class="w-5 h-5 accent-instagram-blue rounded">
-                </div>
-                <div class="flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-xl cursor-pointer">
-                    <span class="font-medium text-sm">Cloud Backend</span>
-                    <span class="text-xs text-emerald-500 font-semibold">Firebase Firestore Connected</span>
-                </div>
-                <div class="pt-4 border-t border-gray-200 dark:border-zinc-800">
-                    <button onclick="window.logout()" class="w-full py-2.5 bg-red-50 dark:bg-red-950/30 text-red-600 font-semibold rounded-lg text-sm">Log out</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, collection, query, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'godx-insta-prod';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "demo", projectId: "demo" };
-
-        let app, db, auth;
+    <script>
+        // Global App State & Database
         let currentUser = null;
         let isSignUpMode = false;
         let localFileBase64 = null;
-        let activeCommentPostId = null;
+        let activeProfileTab = 'posts';
 
-        let globalPosts = [];
-        let globalStories = [];
-        let globalUsers = [];
-        let globalMessages = [];
+        const defaultPosts = [
+            {
+                id: 'post_1',
+                uid: 'user_sample_1',
+                username: 'alex_explorer',
+                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+                mediaUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+                caption: 'Sunset serenity at the coastline 🌅✨',
+                isReel: false,
+                likes: ['user_sample_2'],
+                comments: [
+                    { username: 'sarah_design', text: 'Gorgeous capture!' },
+                    { username: 'liam_dev', text: 'Incredible lighting!' }
+                ],
+                createdAt: Date.now() - 3600000
+            },
+            {
+                id: 'post_2',
+                uid: 'user_sample_2',
+                username: 'sarah_design',
+                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
+                mediaUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
+                caption: 'Minimalist desk setup for the new project week 💻⚡',
+                isReel: false,
+                likes: [],
+                comments: [],
+                createdAt: Date.now() - 7200000
+            },
+            {
+                id: 'post_reel_1',
+                uid: 'user_sample_1',
+                username: 'alex_explorer',
+                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+                mediaUrl: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800',
+                caption: ' Cinematic reel vibe 🎥✨',
+                isReel: true,
+                likes: ['user_sample_2'],
+                comments: [],
+                createdAt: Date.now() - 9000000
+            }
+        ];
+
+        const defaultStories = [
+            {
+                id: 'story_1',
+                username: 'sarah_design',
+                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
+                mediaUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600'
+            },
+            {
+                id: 'story_2',
+                username: 'liam_dev',
+                avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150',
+                mediaUrl: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600'
+            }
+        ];
+
+        function getStorageData(key, fallback) {
+            try {
+                const data = localStorage.getItem('godx_' + key);
+                return data ? JSON.parse(data) : fallback;
+            } catch(e) {
+                return fallback;
+            }
+        }
+
+        function setStorageData(key, value) {
+            try {
+                localStorage.setItem('godx_' + key, JSON.stringify(value));
+            } catch(e) {}
+        }
+
+        let posts = getStorageData('posts', defaultPosts);
+        let stories = getStorageData('stories', defaultStories);
 
         window.toggleAuthMode = function() {
             isSignUpMode = !isSignUpMode;
@@ -446,195 +369,118 @@
 
             if (isSignUpMode) {
                 nameWrapper.classList.remove('hidden');
-                submitBtn.innerText = 'Sign up';
-                switchText.innerText = 'Have an account?';
-                switchBtn.innerText = 'Log in';
+                submitBtn.innerText = "Sign up";
+                switchText.innerText = "Have an account?";
+                switchBtn.innerText = "Log in";
             } else {
                 nameWrapper.classList.add('hidden');
-                submitBtn.innerText = 'Log in';
+                submitBtn.innerText = "Log in";
                 switchText.innerText = "Don't have an account?";
-                switchBtn.innerText = 'Sign up';
+                switchBtn.innerText = "Sign up";
             }
         };
 
-        window.initFirebaseApp = async function() {
-            try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+        window.handleAuth = function(e) {
+            e.preventDefault();
+            const username = document.getElementById('auth-username').value.trim();
+            const password = document.getElementById('auth-password').value.trim();
+            const fullname = document.getElementById('auth-fullname').value.trim();
 
-                // Authenticate anonymously for security rules context, but do NOT auto-login user until explicit form submission
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
+            if (!username || !password) return;
 
-                // Check if user session already exists locally
-                const savedUser = localStorage.getItem('godx_current_user');
-                if (savedUser) {
-                    currentUser = JSON.parse(savedUser);
-                    hideAuthModal();
-                    initAppUI();
-                    setupCloudListeners();
-                }
-            } catch (err) {
-                console.error("Firebase initialization error:", err);
-            }
-        };
+            currentUser = {
+                uid: 'user_' + username.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+                username: username,
+                fullname: fullname || username,
+                avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+                bio: 'Digital creator on godx ✨'
+            };
 
-        window.handleAuth = async function(event) {
-            event.preventDefault();
-            const usernameInput = document.getElementById('auth-username').value.trim();
-            const passwordInput = document.getElementById('auth-password').value.trim();
-            const fullnameInput = document.getElementById('auth-fullname').value.trim() || usernameInput;
-
-            if (!usernameInput || !passwordInput) {
-                return;
-            }
-
-            if (auth && auth.currentUser) {
-                const uid = auth.currentUser.uid;
-                const userRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', uid);
-                
-                if (isSignUpMode) {
-                    currentUser = {
-                        id: uid,
-                        username: usernameInput,
-                        fullname: fullnameInput,
-                        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
-                        bio: 'Cloud connected on godx ✨'
-                    };
-                    await setDoc(userRef, currentUser);
-                    localStorage.setItem('godx_current_user', JSON.stringify(currentUser));
-                    hideAuthModal();
-                    initAppUI();
-                    setupCloudListeners();
-                } else {
-                    // Log in mode
-                    const userSnap = await getDoc(userRef);
-                    if (userSnap.exists()) {
-                        currentUser = userSnap.data();
-                    } else {
-                        currentUser = {
-                            id: uid,
-                            username: usernameInput,
-                            fullname: fullnameInput,
-                            avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
-                            bio: 'Cloud connected on godx ✨'
-                        };
-                        await setDoc(userRef, currentUser, { merge: true });
-                    }
-                    localStorage.setItem('godx_current_user', JSON.stringify(currentUser));
-                    hideAuthModal();
-                    initAppUI();
-                    setupCloudListeners();
-                }
-            }
+            document.getElementById('auth-container').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            updateUIProfileElements();
+            window.switchTab('home');
         };
 
         window.loginAsGuest = function() {
-            if (!auth || !auth.currentUser) return;
-            const uid = auth.currentUser.uid;
             currentUser = {
-                id: uid,
-                username: 'guest_' + uid.substring(0, 5),
+                uid: 'guest_' + Math.floor(Math.random() * 10000),
+                username: 'cloud_guest',
                 fullname: 'Cloud Guest',
                 avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
-                bio: 'Guest session on godx ✨'
+                bio: 'Visiting godx as guest ✨'
             };
-            localStorage.setItem('godx_current_user', JSON.stringify(currentUser));
-            hideAuthModal();
-            initAppUI();
-            setupCloudListeners();
+
+            document.getElementById('auth-container').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            updateUIProfileElements();
+            window.switchTab('home');
         };
 
         window.logout = function() {
-            localStorage.removeItem('godx_current_user');
-            location.reload();
+            currentUser = null;
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('auth-container').classList.remove('hidden');
         };
 
-        function hideAuthModal() {
-            document.getElementById('auth-container').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
-        }
+        window.switchTab = function(tabName) {
+            const tabs = ['home', 'search', 'explore', 'reels', 'profile'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                if (el) el.classList.add('hidden');
+            });
+            const activeTab = document.getElementById('tab-' + tabName);
+            if (activeTab) activeTab.classList.remove('hidden');
 
-        function setupCloudListeners() {
-            const postsCol = collection(db, 'artifacts', appId, 'public', 'data', 'posts');
-            onSnapshot(postsCol, (snapshot) => {
-                globalPosts = [];
-                snapshot.forEach(docSnap => {
-                    globalPosts.push({ id: docSnap.id, ...docSnap.data() });
-                });
-                globalPosts.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-                renderFeed();
-                renderExploreGrid();
-                renderReels();
-                renderProfilePosts();
-                if (activeCommentPostId) renderComments(activeCommentPostId);
-            }, (error) => console.error("Posts listener error:", error));
+            if (tabName === 'home') renderFeed();
+            if (tabName === 'search') renderSearch();
+            if (tabName === 'explore') renderExplore();
+            if (tabName === 'reels') renderReels();
+            if (tabName === 'profile') renderProfile();
+        };
 
-            const storiesCol = collection(db, 'artifacts', appId, 'public', 'data', 'stories');
-            onSnapshot(storiesCol, (snapshot) => {
-                globalStories = [];
-                snapshot.forEach(docSnap => {
-                    globalStories.push({ id: docSnap.id, ...docSnap.data() });
-                });
-                renderStories();
-            }, (error) => console.error("Stories listener error:", error));
+        window.openCreatePostModal = function() {
+            document.getElementById('create-modal').classList.remove('hidden');
+        };
+        window.closeCreatePostModal = function() {
+            document.getElementById('create-modal').classList.add('hidden');
+            localFileBase64 = null;
+            document.getElementById('post-preview-container').classList.add('hidden');
+            document.getElementById('create-post-caption').value = '';
+            document.getElementById('create-is-reel').checked = false;
+        };
 
-            const usersCol = collection(db, 'artifacts', appId, 'public', 'data', 'users');
-            onSnapshot(usersCol, (snapshot) => {
-                globalUsers = [];
-                snapshot.forEach(docSnap => {
-                    globalUsers.push(docSnap.data());
-                });
-                renderChatList();
-            }, (error) => console.error("Users listener error:", error));
-
-            const messagesCol = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
-            onSnapshot(messagesCol, (snapshot) => {
-                globalMessages = [];
-                snapshot.forEach(docSnap => {
-                    globalMessages.push(docSnap.data());
-                });
-                renderChatMessages();
-            }, (error) => console.error("Messages listener error:", error));
-        }
-
-        function initAppUI() {
+        window.openEditProfileModal = function() {
             if (!currentUser) return;
-            const avatars = [document.getElementById('sidebar-avatar'), document.getElementById('story-my-avatar'), document.getElementById('profile-avatar')];
-            avatars.forEach(el => { if(el && currentUser.avatar) el.src = currentUser.avatar; });
+            document.getElementById('edit-fullname-input').value = currentUser.fullname || '';
+            document.getElementById('edit-bio-input').value = currentUser.bio || '';
+            document.getElementById('edit-profile-modal').classList.remove('hidden');
+        };
+        window.closeEditProfileModal = function() {
+            document.getElementById('edit-profile-modal').classList.add('hidden');
+        };
 
-            document.getElementById('profile-username').innerText = currentUser.username;
-            document.getElementById('profile-fullname').innerText = currentUser.fullname;
-            document.getElementById('profile-bio').innerText = currentUser.bio;
+        window.saveProfileEdits = function() {
+            if (!currentUser) return;
+            currentUser.fullname = document.getElementById('edit-fullname-input').value.trim() || currentUser.username;
+            currentUser.bio = document.getElementById('edit-bio-input').value.trim();
+            updateUIProfileElements();
+            window.closeEditProfileModal();
+            window.switchTab('profile');
+        };
 
-            if (localStorage.getItem('godx_dark') === 'true') {
-                document.documentElement.classList.add('dark');
-                document.getElementById('settings-dark-toggle').checked = true;
-                document.getElementById('theme-icon').className = "fa-solid fa-sun text-xl w-6 text-center";
-                document.getElementById('theme-text').innerText = "Light mode";
-            }
-        }
-
-        window.handleProfileAvatarUpload = function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const base64 = e.target.result;
-                currentUser.avatar = base64;
-                document.getElementById('profile-avatar').src = base64;
-                document.getElementById('sidebar-avatar').src = base64;
-                document.getElementById('story-my-avatar').src = base64;
-
-                const userRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', currentUser.id);
-                await setDoc(userRef, currentUser, { merge: true });
-                localStorage.setItem('godx_current_user', JSON.stringify(currentUser));
-            };
-            reader.readAsDataURL(file);
+        window.updateUIProfileElements = function() {
+            if (!currentUser) return;
+            const avatars = document.querySelectorAll('#sidebar-avatar, #profile-avatar, #story-my-avatar');
+            avatars.forEach(img => {
+                if (img) img.src = currentUser.avatar;
+            });
+            const usernameEl = document.getElementById('profile-username');
+            if (usernameEl) usernameEl.innerText = currentUser.username;
+            const fullnameEl = document.getElementById('profile-fullname');
+            if (fullnameEl) fullnameEl.innerText = currentUser.fullname;
+            const bioEl = document.getElementById('profile-bio');
+            if (bioEl) bioEl.innerText = currentUser.bio;
         };
 
         window.previewPostFile = function(event) {
@@ -643,446 +489,292 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 localFileBase64 = e.target.result;
-                document.getElementById('post-file-label').innerText = file.name;
-                document.getElementById('post-preview-container').classList.remove('hidden');
                 document.getElementById('post-img-preview').src = localFileBase64;
+                document.getElementById('post-preview-container').classList.remove('hidden');
+                document.getElementById('post-file-label').innerText = file.name;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.handleProfileAvatarUpload = function(event) {
+            const file = event.target.files[0];
+            if (!file || !currentUser) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentUser.avatar = e.target.result;
+                updateUIProfileElements();
+                renderFeed();
             };
             reader.readAsDataURL(file);
         };
 
         window.handleStoryUpload = function(event) {
             const file = event.target.files[0];
-            if (!file) return;
+            if (!file || !currentUser) return;
             const reader = new FileReader();
-            reader.onload = async function(e) {
-                const mediaBase64 = e.target.result;
+            reader.onload = function(e) {
                 const newStory = {
-                    userId: currentUser.id,
+                    id: 'story_' + Date.now(),
                     username: currentUser.username,
                     avatar: currentUser.avatar,
-                    media: mediaBase64,
-                    timestamp: 'Just now',
-                    createdAt: Date.now()
+                    mediaUrl: e.target.result
                 };
-                const storiesCol = collection(db, 'artifacts', appId, 'public', 'data', 'stories');
-                await addDoc(storiesCol, newStory);
+                stories.unshift(newStory);
+                setStorageData('stories', stories);
+                renderFeed();
             };
             reader.readAsDataURL(file);
         };
 
-        window.submitNewPost = async function() {
-            if (!localFileBase64) return;
+        window.submitNewPost = function() {
+            if (!currentUser) return;
             const caption = document.getElementById('create-post-caption').value.trim();
             const isReel = document.getElementById('create-is-reel').checked;
+            const mediaUrl = localFileBase64 || 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800';
 
             const newPost = {
-                userId: currentUser.id,
+                id: 'post_' + Date.now(),
+                uid: currentUser.uid,
                 username: currentUser.username,
                 avatar: currentUser.avatar,
-                media: localFileBase64,
-                caption: caption,
-                likes: [],
-                timestamp: 'Just now',
-                createdAt: Date.now(),
-                comments: [],
+                mediaUrl: mediaUrl,
+                caption: caption || 'New post on godx ✨',
                 isReel: isReel,
-                saved: false
+                likes: [],
+                comments: [],
+                createdAt: Date.now()
             };
 
-            const postsCol = collection(db, 'artifacts', appId, 'public', 'data', 'posts');
-            await addDoc(postsCol, newPost);
-
+            posts.unshift(newPost);
+            setStorageData('posts', posts);
             window.closeCreatePostModal();
-            localFileBase64 = null;
-            document.getElementById('create-post-caption').value = '';
-            document.getElementById('post-preview-container').classList.add('hidden');
-            document.getElementById('post-file-label').innerText = 'Upload image or video from device gallery';
+            window.switchTab('home');
         };
 
-        window.switchTab = function(tabName) {
-            const tabs = ['home', 'search', 'explore', 'reels', 'messages', 'profile'];
-            tabs.forEach(t => {
-                const el = document.getElementById('tab-' + t);
-                if (el) el.classList.add('hidden');
+        window.deletePost = function(postId) {
+            posts = posts.filter(p => p.id !== postId);
+            setStorageData('posts', posts);
+            renderFeed();
+            if (document.getElementById('tab-profile') && !document.getElementById('tab-profile').classList.contains('hidden')) {
+                renderProfile();
+            }
+        };
+
+        window.toggleLike = function(postId) {
+            if (!currentUser) return;
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            const index = post.likes.indexOf(currentUser.uid);
+            if (index > -1) {
+                post.likes.splice(index, 1);
+            } else {
+                post.likes.push(currentUser.uid);
+            }
+            setStorageData('posts', posts);
+            renderFeed();
+        };
+
+        window.addComment = function(postId, event) {
+            if (event.key !== 'Enter') return;
+            const input = event.target;
+            const text = input.value.trim();
+            if (!text || !currentUser) return;
+
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            post.comments.push({
+                username: currentUser.username,
+                text: text
             });
-            const target = document.getElementById('tab-' + tabName);
-            if (target) target.classList.remove('hidden');
+            setStorageData('posts', posts);
+            input.value = '';
+            renderFeed();
         };
 
         function renderFeed() {
-            const container = document.getElementById('feed-container');
-            if (!container) return;
-            container.innerHTML = '';
-            if (globalPosts.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-gray-400">No posts in the cloud yet. Create one!</div>`;
+            const storiesContainer = document.getElementById('stories-container');
+            if (storiesContainer) {
+                storiesContainer.innerHTML = stories.map(s => `
+                    <div class="flex flex-col items-center flex-shrink-0 cursor-pointer">
+                        <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+                            <img src="${s.avatar}" class="w-full h-full object-cover rounded-full border-2 border-white dark:border-black" alt="${s.username}">
+                        </div>
+                        <span class="text-xs mt-1 text-gray-600 dark:text-zinc-400 truncate w-16 text-center">${s.username}</span>
+                    </div>
+                `).join('');
+            }
+
+            const feedContainer = document.getElementById('feed-container');
+            if (!feedContainer) return;
+
+            const regularPosts = posts.filter(p => !p.isReel);
+            if (regularPosts.length === 0) {
+                feedContainer.innerHTML = `<div class="text-center py-12 text-gray-400">No posts yet. Create your first post!</div>`;
                 return;
             }
 
-            globalPosts.forEach(post => {
-                const isLiked = post.likes && post.likes.includes(currentUser?.id);
-                const commentsCount = post.comments ? post.comments.length : 0;
-                const postEl = document.createElement('div');
-                postEl.className = 'bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 sm:rounded-xl overflow-hidden';
-                postEl.innerHTML = `
-                    <div class="flex items-center justify-between p-3">
-                        <div class="flex items-center gap-3">
-                            <img src="${post.avatar}" class="w-8 h-8 rounded-full object-cover">
-                            <span class="font-semibold text-sm">${post.username}</span>
-                            <span class="text-xs text-gray-400">• ${post.timestamp}</span>
-                        </div>
-                        <button class="text-gray-500 hover:text-instagram-pink"><i class="fa-solid fa-ellipsis"></i></button>
-                    </div>
-                    <div class="w-full bg-black flex items-center justify-center max-h-[600px] overflow-hidden">
-                        <img src="${post.media}" class="w-full object-cover max-h-[600px]">
-                    </div>
-                    <div class="p-3 space-y-2">
-                        <div class="flex items-center justify-between text-xl">
-                            <div class="flex items-center gap-4">
-                                <button onclick="window.toggleLikePost('${post.id}')" class="${isLiked ? 'text-red-500 like-animate' : 'hover:text-red-500'} transition"><i class="${isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
-                                <button onclick="window.openCommentsModal('${post.id}')" class="hover:text-instagram-blue transition"><i class="fa-regular fa-comment"></i></button>
-                                <button class="hover:text-instagram-blue transition"><i class="fa-regular fa-paper-plane"></i></button>
-                            </div>
-                        </div>
-                        <div class="font-semibold text-sm">${post.likes ? post.likes.length : 0} likes</div>
-                        <div class="text-sm">
-                            <span class="font-semibold mr-2">${post.username}</span><span>${post.caption}</span>
-                        </div>
-                        ${commentsCount > 0 ? `<button onclick="window.openCommentsModal('${post.id}')" class="text-xs text-gray-500 hover:underline">View all ${commentsCount} comments</button>` : ''}
-                    </div>
-                `;
-                container.appendChild(postEl);
-            });
-        }
+            feedContainer.innerHTML = regularPosts.map(post => {
+                const isLiked = currentUser && post.likes.includes(currentUser.uid);
+                const isOwner = currentUser && post.uid === currentUser.uid;
 
-        window.toggleLikePost = async function(postId) {
-            const post = globalPosts.find(p => p.id === postId);
-            if (!post || !currentUser) return;
-            let likes = post.likes || [];
-            const idx = likes.indexOf(currentUser.id);
-            if (idx > -1) {
-                likes.splice(idx, 1);
-            } else {
-                likes.push(currentUser.id);
-            }
-            const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'posts', postId);
-            await updateDoc(postRef, { likes: likes });
-        };
-
-        window.openCommentsModal = function(postId) {
-            activeCommentPostId = postId;
-            renderComments(postId);
-            document.getElementById('comments-modal').classList.remove('hidden');
-        };
-
-        window.closeCommentsModal = function() {
-            activeCommentPostId = null;
-            document.getElementById('comments-modal').classList.add('hidden');
-        };
-
-        function renderComments(postId) {
-            const post = globalPosts.find(p => p.id === postId);
-            const container = document.getElementById('comments-list-container');
-            if (!post || !container) return;
-            container.innerHTML = '';
-
-            const comments = post.comments || [];
-            if (comments.length === 0) {
-                container.innerHTML = `<div class="text-center py-10 text-gray-400 text-sm">No comments yet. Be the first!</div>`;
-                return;
-            }
-
-            comments.forEach(c => {
-                const el = document.createElement('div');
-                el.className = 'flex items-start gap-3 text-sm';
-                el.innerHTML = `
-                    <div class="font-semibold">${c.username}</div>
-                    <div class="flex-1 text-gray-700 dark:text-zinc-300">${c.text}</div>
-                `;
-                container.appendChild(el);
-            });
-        }
-
-        window.submitComment = async function() {
-            const input = document.getElementById('comment-input');
-            const text = input.value.trim();
-            if (!text || !activeCommentPostId || !currentUser) return;
-
-            const post = globalPosts.find(p => p.id === activeCommentPostId);
-            if (!post) return;
-
-            const comments = post.comments || [];
-            comments.push({
-                username: currentUser.username,
-                text: text,
-                createdAt: Date.now()
-            });
-
-            const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'posts', activeCommentPostId);
-            await updateDoc(postRef, { comments: comments });
-            input.value = '';
-        };
-
-        function renderStories() {
-            const container = document.getElementById('stories-container');
-            if (!container) return;
-            container.innerHTML = '';
-            globalStories.forEach(story => {
-                const storyEl = document.createElement('div');
-                storyEl.className = 'flex flex-col items-center flex-shrink-0 cursor-pointer group';
-                storyEl.onclick = () => window.openStoryViewer(story.media, story.username, story.avatar);
-                storyEl.innerHTML = `
-                    <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
-                        <img src="${story.avatar}" class="w-full h-full object-cover rounded-full border-2 border-white dark:border-black">
-                    </div>
-                    <span class="text-xs mt-1 text-gray-600 dark:text-zinc-400 truncate w-16 text-center">${story.username}</span>
-                `;
-                container.appendChild(storyEl);
-            });
-        }
-
-        window.openStoryViewer = function(media, username, avatar) {
-            document.getElementById('story-viewer-media').src = media;
-            document.getElementById('story-viewer-username').innerText = username;
-            document.getElementById('story-viewer-avatar').src = avatar;
-            document.getElementById('story-viewer-modal').classList.remove('hidden');
-
-            const fill = document.getElementById('story-progress-fill');
-            fill.style.width = '0%';
-            setTimeout(() => { fill.style.transition = 'width 5s linear'; fill.style.width = '100%'; }, 50);
-            setTimeout(() => { window.closeStoryViewer(); }, 5000);
-        };
-
-        window.closeStoryViewer = function() {
-            document.getElementById('story-viewer-modal').classList.add('hidden');
-        };
-
-        function renderExploreGrid() {
-            const grid = document.getElementById('explore-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            globalPosts.forEach(post => {
-                const item = document.createElement('div');
-                item.className = 'aspect-square bg-gray-200 dark:bg-zinc-800 overflow-hidden cursor-pointer group relative';
-                item.innerHTML = `<img src="${post.media}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">`;
-                grid.appendChild(item);
-            });
-        }
-
-        function renderReels() {
-            const container = document.getElementById('reels-container');
-            if (!container) return;
-            container.innerHTML = '';
-            const reelsPosts = globalPosts.filter(p => p.isReel);
-            if (reelsPosts.length === 0 && globalPosts.length > 0) {
-                reelsPosts.push(...globalPosts);
-            }
-            reelsPosts.forEach(post => {
-                const reelEl = document.createElement('div');
-                reelEl.className = 'w-full h-full snap-start relative flex flex-col justify-end p-6 bg-zinc-950 text-white';
-                reelEl.innerHTML = `
-                    <div class="absolute inset-0 z-0">
-                        <img src="${post.media}" class="w-full h-full object-cover opacity-80">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
-                    </div>
-                    <div class="relative z-10 flex justify-between items-end">
-                        <div class="space-y-3 max-w-[75%]">
+                return `
+                    <article class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 sm:rounded-2xl overflow-hidden shadow-sm">
+                        <div class="flex items-center justify-between p-4">
                             <div class="flex items-center gap-3">
-                                <img src="${post.avatar}" class="w-10 h-10 rounded-full border border-white object-cover">
+                                <img src="${post.avatar}" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-zinc-800">
                                 <span class="font-semibold text-sm">${post.username}</span>
                             </div>
-                            <p class="text-sm">${post.caption}</p>
+                            ${isOwner ? `<button onclick="window.deletePost('${post.id}')" class="text-gray-400 hover:text-red-500 text-sm"><i class="fa-regular fa-trash-can"></i></button>` : ''}
                         </div>
-                    </div>
+                        <div class="w-full bg-black flex items-center justify-center max-h-[500px] overflow-hidden">
+                            <img src="${post.mediaUrl}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4 space-y-3">
+                            <div class="flex items-center justify-between text-2xl">
+                                <div class="flex items-center gap-4">
+                                    <button onclick="window.toggleLike('${post.id}')" class="${isLiked ? 'text-red-500 like-animate' : 'hover:text-gray-400'}"><i class="${isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
+                                    <button class="hover:text-gray-400"><i class="fa-regular fa-comment"></i></button>
+                                    <button class="hover:text-gray-400"><i class="fa-regular fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                            <div class="font-semibold text-sm">${post.likes.length} likes</div>
+                            <div class="text-sm">
+                                <strong class="mr-2">${post.username}</strong><span>${post.caption}</span>
+                            </div>
+                            <div class="space-y-1 max-h-24 overflow-y-auto">
+                                ${post.comments.map(c => `<div class="text-xs"><strong class="mr-1">${c.username}</strong><span>${c.text}</span></div>`).join('')}
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-zinc-800">
+                                <input type="text" onkeypress="window.addComment('${post.id}', event)" placeholder="Add a comment..." class="w-full bg-transparent text-sm focus:outline-none">
+                            </div>
+                        </div>
+                    </article>
                 `;
-                container.appendChild(reelEl);
-            });
+            }).join('');
         }
-
-        let activeChatUser = null;
-
-        function renderChatList() {
-            const list = document.getElementById('chat-list');
-            if (!list) return;
-            list.innerHTML = '';
-            globalUsers.filter(u => u.id !== currentUser?.id).forEach(u => {
-                const item = document.createElement('div');
-                item.className = 'flex items-center gap-3 p-3 hover:bg-gray-100 dark:hover:bg-zinc-900 cursor-pointer transition';
-                item.onclick = () => openChat(u);
-                item.innerHTML = `
-                    <img src="${u.avatar}" class="w-12 h-12 rounded-full object-cover">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-sm">${u.username}</h4>
-                        <p class="text-xs text-gray-500">Cloud active</p>
-                    </div>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function openChat(user) {
-            activeChatUser = user;
-            document.getElementById('active-chat-name').innerText = user.username;
-            document.getElementById('active-chat-avatar').src = user.avatar;
-            document.getElementById('chat-input-bar').classList.remove('hidden');
-            renderChatMessages();
-        }
-
-        function renderChatMessages() {
-            if (!activeChatUser || !currentUser) return;
-            const container = document.getElementById('chat-messages');
-            if (!container) return;
-            container.innerHTML = '';
-
-            const msgs = globalMessages.filter(m => 
-                (m.sender === currentUser.username && m.receiver === activeChatUser.username) || 
-                (m.sender === activeChatUser.username && m.receiver === currentUser.username)
-            );
-
-            msgs.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-
-            if (msgs.length === 0) {
-                container.innerHTML = `<div class="m-auto text-center text-gray-400 text-sm">Say hello to ${activeChatUser.username} in real-time!</div>`;
-                return;
-            }
-
-            msgs.forEach(m => {
-                const isMe = m.sender === currentUser.username;
-                const msgEl = document.createElement('div');
-                msgEl.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
-                msgEl.innerHTML = `
-                    <div class="max-w-[70%] px-4 py-2 rounded-2xl text-sm ${isMe ? 'bg-instagram-blue text-white rounded-br-none' : 'bg-gray-200 dark:bg-zinc-800 rounded-bl-none'}">
-                        ${m.text}
-                    </div>
-                `;
-                container.appendChild(msgEl);
-            });
-            container.scrollTop = container.scrollHeight;
-        }
-
-        window.sendChatMessage = async function() {
-            const input = document.getElementById('chat-message-input');
-            const text = input.value.trim();
-            if (!text || !activeChatUser || !currentUser) return;
-
-            const newMsg = {
-                sender: currentUser.username,
-                receiver: activeChatUser.username,
-                text: text,
-                createdAt: Date.now()
-            };
-
-            const messagesCol = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
-            await addDoc(messagesCol, newMsg);
-            input.value = '';
-        };
-
-        window.handleChatKeyPress = function(e) {
-            if (e.key === 'Enter') window.sendChatMessage();
-        };
-
-        let currentProfileTab = 'posts';
-        window.switchProfileTab = function(tab) {
-            currentProfileTab = tab;
-            ['posts', 'reels', 'saved'].forEach(t => {
-                const btn = document.getElementById('btn-prof-' + t);
-                if (!btn) return;
-                if (t === tab) {
-                    btn.className = "flex items-center gap-2 py-3 px-6 border-t-2 border-black dark:border-white text-black dark:text-white transition";
-                } else {
-                    btn.className = "flex items-center gap-2 py-3 px-6 border-t-2 border-transparent hover:text-black dark:hover:text-white transition";
-                }
-            });
-            renderProfilePosts();
-        };
-
-        function renderProfilePosts() {
-            const grid = document.getElementById('profile-posts-grid');
-            if (!grid || !currentUser) return;
-            grid.innerHTML = '';
-
-            let posts = globalPosts.filter(p => p.userId === currentUser.id || p.username === currentUser.username);
-            document.getElementById('profile-posts-count').innerText = posts.length;
-
-            posts.forEach(post => {
-                const item = document.createElement('div');
-                item.className = 'aspect-square bg-gray-200 dark:bg-zinc-800 overflow-hidden relative group cursor-pointer';
-                item.innerHTML = `<img src="${post.media}" class="w-full h-full object-cover">`;
-                grid.appendChild(item);
-            });
-        }
-
-        window.openCreatePostModal = function() { document.getElementById('create-modal').classList.remove('hidden'); };
-        window.closeCreatePostModal = function() { document.getElementById('create-modal').classList.add('hidden'); };
-
-        window.openEditProfileModal = function() {
-            document.getElementById('edit-fullname-input').value = currentUser.fullname;
-            document.getElementById('edit-bio-input').value = currentUser.bio;
-            document.getElementById('edit-profile-modal').classList.remove('hidden');
-        };
-        window.closeEditProfileModal = function() { document.getElementById('edit-profile-modal').classList.add('hidden'); };
-
-        window.saveProfileChanges = async function() {
-            if (!currentUser) return;
-            currentUser.fullname = document.getElementById('edit-fullname-input').value || currentUser.fullname;
-            currentUser.bio = document.getElementById('edit-bio-input').value || currentUser.bio;
-
-            const userRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', currentUser.id);
-            await setDoc(userRef, currentUser, { merge: true });
-            localStorage.setItem('godx_current_user', JSON.stringify(currentUser));
-            window.closeEditProfileModal();
-            initAppUI();
-        };
-
-        window.openNotificationModal = function() { document.getElementById('notification-modal').classList.remove('hidden'); };
-        window.closeNotificationModal = function() { document.getElementById('notification-modal').classList.add('hidden'); };
-
-        window.openSettingsModal = function() { document.getElementById('settings-modal').classList.remove('hidden'); };
-        window.closeSettingsModal = function() { document.getElementById('settings-modal').classList.add('hidden'); };
-
-        window.toggleDarkMode = function() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('godx_dark', isDark);
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-            if (isDark) {
-                if(icon) icon.className = "fa-solid fa-sun text-xl w-6 text-center";
-                if(text) text.innerText = "Light mode";
-                document.getElementById('settings-dark-toggle').checked = true;
-            } else {
-                if(icon) icon.className = "fa-solid fa-moon text-xl w-6 text-center";
-                if(text) text.innerText = "Dark mode";
-                document.getElementById('settings-dark-toggle').checked = false;
-            }
-        };
 
         window.handleSearchInput = function(query) {
             const results = document.getElementById('search-results');
             if (!results) return;
-            results.innerHTML = '';
-            if (!query.trim()) return;
+            const q = query.toLowerCase();
+            const matchedPosts = posts.filter(p => p.username.toLowerCase().includes(q) || p.caption.toLowerCase().includes(q));
 
-            const matchedUsers = globalUsers.filter(u => u.username.toLowerCase().includes(query.toLowerCase()));
-            matchedUsers.forEach(u => {
-                const card = document.createElement('div');
-                card.className = 'flex items-center justify-between p-3 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl';
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <img src="${u.avatar}" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-semibold text-sm">${u.username}</h4>
-                            <p class="text-xs text-gray-500">${u.fullname}</p>
-                        </div>
+            if (matchedPosts.length === 0) {
+                results.innerHTML = `<div class="col-span-2 text-center text-gray-400 py-8">No results found</div>`;
+                return;
+            }
+
+            results.innerHTML = matchedPosts.map(p => `
+                <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                    <img src="${p.mediaUrl}" class="w-16 h-16 rounded-lg object-cover">
+                    <div>
+                        <h4 class="font-semibold text-sm">@${p.username}</h4>
+                        <p class="text-xs text-gray-500 truncate max-w-[200px]">${p.caption}</p>
                     </div>
-                    <button onclick="window.switchTab('messages');" class="px-3 py-1.5 bg-instagram-blue text-white rounded-lg text-xs font-semibold">Message</button>
-                `;
-                results.appendChild(card);
-            });
+                </div>
+            `).join('');
         };
 
-        window.onload = function() {
-            window.initFirebaseApp();
+        window.renderSearch = function() {
+            window.handleSearchInput('');
         };
+
+        window.renderExplore = function() {
+            const grid = document.getElementById('explore-grid');
+            if (!grid) return;
+            grid.innerHTML = posts.map(p => `
+                <div class="aspect-square bg-gray-200 dark:bg-zinc-800 overflow-hidden group relative cursor-pointer">
+                    <img src="${p.mediaUrl}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                </div>
+            `).join('');
+        };
+
+        window.renderReels = function() {
+            const container = document.getElementById('reels-container');
+            if (!container) return;
+            const reelsList = posts.filter(p => p.isReel);
+            if (reelsList.length === 0) {
+                container.innerHTML = `<div class="flex items-center justify-center h-full text-zinc-400 text-sm">No reels posted yet.</div>`;
+                return;
+            }
+            container.innerHTML = reelsList.map(r => `
+                <div class="w-full h-full snap-start relative flex flex-col justify-end p-6">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="${r.mediaUrl}" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative z-10 space-y-2 text-white">
+                        <div class="flex items-center gap-3">
+                            <img src="${r.avatar}" class="w-10 h-10 rounded-full object-cover border">
+                            <span class="font-semibold text-sm">@${r.username}</span>
+                        </div>
+                        <p class="text-sm">${r.caption}</p>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.switchProfileTab = function(tab) {
+            activeProfileTab = tab;
+            ['posts', 'reels', 'saved'].forEach(t => {
+                const btn = document.getElementById('btn-prof-' + t);
+                if (btn) {
+                    if (t === tab) {
+                        btn.className = "flex items-center gap-2 py-3 px-6 border-t-2 border-black dark:border-white text-black dark:text-white transition";
+                    } else {
+                        btn.className = "flex items-center gap-2 py-3 px-6 border-t-2 border-transparent hover:text-black dark:hover:text-white transition";
+                    }
+                }
+            });
+            window.renderProfile();
+        };
+
+        window.renderProfile = function() {
+            if (!currentUser) return;
+            const grid = document.getElementById('profile-posts-grid');
+            if (!grid) return;
+
+            const userPosts = posts.filter(p => p.uid === currentUser.uid);
+            document.getElementById('profile-posts-count').innerText = userPosts.length;
+
+            let displayPosts = userPosts;
+            if (activeProfileTab === 'reels') {
+                displayPosts = userPosts.filter(p => p.isReel);
+            } else if (activeProfileTab === 'saved') {
+                displayPosts = [];
+            }
+
+            if (displayPosts.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-12 text-gray-400 text-sm">No content available in ${activeProfileTab}</div>`;
+                return;
+            }
+
+            grid.innerHTML = displayPosts.map(p => `
+                <div class="aspect-square bg-gray-200 dark:bg-zinc-800 overflow-hidden relative group">
+                    <img src="${p.mediaUrl}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4 text-white font-semibold">
+                        <span><i class="fa-solid fa-heart"></i> ${p.likes.length}</span>
+                        <span><i class="fa-solid fa-comment"></i> ${p.comments.length}</span>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.toggleDarkMode = function() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.className = "fa-solid fa-moon text-xl w-6 text-center";
+                text.innerText = "Dark mode";
+            } else {
+                icon.className = "fa-solid fa-sun text-xl w-6 text-center";
+                text.innerText = "Light mode";
+            }
+        };
+
+        console.log("godx fully corrected application loaded successfully.");
     </script>
-   <script> src="in.js" </script>
 </body>
 </html>
